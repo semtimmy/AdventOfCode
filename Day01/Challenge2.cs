@@ -36,7 +36,7 @@ namespace AdventOfCode
                     return line[i];
                 
                 //check if current character is the start of a new typed out digit
-                char parser = ParseStringForFirstDigit(line, i, "");
+                char parser = ParseStringForDigit(line, i, "", true);
                 if (parser != '-')
                     return parser;
             }
@@ -51,57 +51,37 @@ namespace AdventOfCode
                 if (Char.IsNumber(line[i])) 
                     return line[i];
                 
-                char parser = ParseStringForLastDigit(line, i, "");
+                char parser = ParseStringForDigit(line, i, "", false);
                 if (parser != '-')
                     return parser;
             }
             return '0';
         }
 
-        static char ParseStringForFirstDigit(string line, int CurrentIndex, string buffer)
-        //for each given index, compare the character at that index to each typed out digit
-        //if it finds a match, look forward recursively and check if it spells out a full digit
-        {
-            //if the buffer contains a digit, return the digit
-            int digit = Array.IndexOf(NUMBERS, buffer) + 1;
-            if (digit > 0)
-                {
-                    return (char)(digit + '0');
-                }
-
-            //for each typed out digit, check if the current character and the current digit character matches
-            for (int i = 0; i < NUMBERS.Length; i++)
-                {
-                    if (NUMBERS[i].Length > buffer.Length)
-                        if (line[CurrentIndex] == NUMBERS[i][buffer.Length])
-                        //if it matches, try find the next one
-                        {
-                            buffer += line[CurrentIndex];
-                            return ParseStringForFirstDigit(line, CurrentIndex + 1, buffer);
-                        }
-                }
-            //otherwise return the "failed" character
-            return '-';
-        }
-
-        static char ParseStringForLastDigit(string line, int CurrentIndex, string buffer)
-        //inverse of ParseStringForLastDigit
+        static char ParseStringForDigit(string line, int currentIndex, string buffer, bool searchForward)
         {
             int digit = Array.IndexOf(NUMBERS, buffer) + 1;
             if (digit > 0)
-                {
-                    return (char)(digit + '0');
-                }
+            {
+                return (char)(digit + '0');
+            }
+
+            int increment = searchForward ? 1 : -1;
 
             for (int i = 0; i < NUMBERS.Length; i++)
+            {
+                if (NUMBERS[i].Length > buffer.Length)
                 {
-                    if (NUMBERS[i].Length > buffer.Length)
-                        if (line[CurrentIndex] == NUMBERS[i][NUMBERS[i].Length - buffer.Length - 1])
-                        {
-                            buffer = line[CurrentIndex] + buffer;
-                            return ParseStringForLastDigit(line, CurrentIndex - 1, buffer);
-                        }
+                    int compareIndex = searchForward ? buffer.Length : NUMBERS[i].Length - buffer.Length - 1;
+
+                    if (line[currentIndex] == NUMBERS[i][compareIndex])
+                    {
+                        buffer = searchForward ? buffer + line[currentIndex] : line[currentIndex] + buffer;
+                        return ParseStringForDigit(line, currentIndex + increment, buffer, searchForward);
+                    }
                 }
+            }
+
             return '-';
         }
     }
