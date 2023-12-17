@@ -1,8 +1,8 @@
 ﻿using System.IO;
 
-namespace HelloWorld
+namespace AdventOfCode
 {
-    class Hello {        
+    class ChallengeTwo{         
         static string[] NUMBERS = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
 
         static void Main(string[] args)
