@@ -11,7 +11,7 @@ namespace AdventOfCode
                 string[] lines = File.ReadAllLines("C:/Users/semis/Desktop/AdventOfCode/Day1/AdventOfCode/input.txt");
                 int solution = 0;
 				
-				//Fir each line in file, get first and last digit as char, append to eachother, then parse as int. finally add them together
+				//For each line in file, get first and last digit as character and append them to eachother, and add this to the solution
                 for (int i = 0; i < lines.Length; i++)
                 {
                     solution += int.Parse(Char.ToString(GetFirstDigit(lines[i])) + Char.ToString(GetLastDigit(lines[i])));
