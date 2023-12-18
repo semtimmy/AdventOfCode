@@ -5,9 +5,9 @@
 
 |  First Header   | Second Header |
 | --------------- | ------------- |
-| [Day 1](/Day01) | [Challenge 1](/Day01/Challenge1) |
-|                 | [Challenge 2](/Day01/Challenge2) |
-| [Day 2](/Day02) | [Challenge 1](/Day02/Challenge1) |
-|                 | [Challenge 2](/Day02/Challenge2) |
-| [Day 3](/Day03) | [Challenge 1](/Day03/Challenge1) |
-|                 | [Challenge 2](/Day03/Challenge2) |
+| [Day 1](/Day01) | [Challenge 1](/Day01/Challenge1.cs) |
+|                 | [Challenge 2](/Day01/Challenge2.cs) |
+| [Day 2](/Day02) | [Challenge 1](/Day02/Challenge1.cs) |
+|                 | [Challenge 2](/Day02/Challenge2.cs) |
+| [Day 3](/Day03) | [Challenge 1](/Day03/Challenge1.cs) |
+|                 | [Challenge 2](/Day03/Challenge2.cs) |
